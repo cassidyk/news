@@ -17,11 +17,13 @@ files="$dir/files"
 rm -rf $string/*
 curl https://news.ycombinator.com/ > $files/`date +%s`.txt
 
+# build 0 as root diff
 ls -1 $files | grep .txt > $files/files.sl
 A=`head -1 $files/files.sl | tail -1`
 cat $files/$A > $string/0
 echo '' >> $string/0
 
+# for each other file, compare to root file
 for index in `seq 2 $(cat $files/files.sl | wc -l | tr -d ' ')`
 do
   B=`head -$index $files/files.sl | tail -1`
@@ -47,10 +49,3 @@ do
     fi
   done
 done
-
-
-
-
-
-
-

@@ -12,6 +12,7 @@ chr() {
   printf "\\$(printf '%03o' "$1")"
 }
 
+# start in $letter dir
 dir="/Users/cassidyk/wheel/hackernews/strings/$letter"
 cd $dir
 ls -1 $dir | grep -v files.sl | sort -g > files.sl
@@ -20,18 +21,19 @@ while read line
 do
   if [[ -d $dir/$line ]]; then
     cd $dir/$line
-    pwd
+
+    ## cleanup
     mv a_i ../i_a
     mv b_i ../i_b
     rm -rf *
     mv ../i_a ./a_i
     mv ../i_b ./b_i
 
-    # get only line from files a_i b_i
+    # get the only line within files a_i b_i
     a_i=`head -1 $dir/$line/a_i | tail -1`
     b_i=`head -1 $dir/$line/b_i | tail -1`
 
-    # seperate words into line in files a_j b_j
+    # seperate words into lines in files a_j b_j
     for word in $a_i;
     do
       echo $word >> a_j
@@ -56,6 +58,7 @@ do
       A_i=`head -$index $dir/$line/a_j | tail -1`
       B_i=`head -$index $dir/$line/b_j | tail -1`
 
+      # dedup or $
       if [[ $A_i == $B_i ]]; then
         echo $A_i >> 0
       else
@@ -69,6 +72,8 @@ do
       fi
     done
 
+    ## hack job
+    # handles remaining output in files when one of a_j b_j is longer then the other
     if [ `cat a_j.cw` -ne `cat b_j.cw` ]; then
       if [ `cat a_j.cw` -gt `cat b_j.cw` ]; then
         index=$(( $index + 1 ))

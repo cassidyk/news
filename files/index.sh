@@ -12,20 +12,27 @@ files="$dir/strings"
 
 ls -1 $files | grep -v files.sl > $files/files.sl
 count=$(cat $files/files.sl | wc -l | tr -d ' ')
-
+# valid if $index can generate a file
 if [ $index -ge $count ]; then
   echo "$index is invalid."
   exit 1
 fi
 
 if [ $index -eq 0 ]; then
+  # root file
   cat $files/0
 else
+  # lookup $index value
   index=$(( $index + 1 ))
   index=`head -$index $files/files.sl | tail -1`
+
   if [[ -d $files/$index ]]; then
     cd $files/$index
     ls -1 $files/$index | grep -v files.sl | sort -g > files.sl
+
+    # if file -> cat
+    # if dir -> cat ./dir/b_i
+    # a_i is from ./../0
     while read line
     do
 
