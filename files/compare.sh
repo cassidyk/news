@@ -4,6 +4,11 @@ chr() {
   [ "$1" -lt 256 ] || return 1
   printf "\\$(printf '%03o' "$1")"
 }
+int() {
+  [ -n "$1" ] || return 1
+  index=`printf '%d\n' "'$1"`
+  echo $(( $index-65 ))
+}
 
 dir='/Users/cassidyk/wheel/hackernews'
 string="$dir/strings"
@@ -15,6 +20,7 @@ curl https://news.ycombinator.com/ > $files/`date +%s`.txt
 ls -1 $files | grep .txt > $files/files.sl
 A=`head -1 $files/files.sl | tail -1`
 cat $files/$A > $string/0
+echo '' >> $string/0
 
 for index in `seq 2 $(cat $files/files.sl | wc -l | tr -d ' ')`
 do
