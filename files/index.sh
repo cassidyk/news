@@ -1,6 +1,6 @@
 #!/bin/bash
-## usage:   ./index <int>
-## example: ./index 3
+## usage:   ./index.sh <int>
+## example: ./index.sh 3
 if [[ $# -ne 1 ]]; then
   index=0
 else

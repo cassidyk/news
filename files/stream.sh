@@ -1,5 +1,6 @@
 #!/bin/bash
-
+## usage:   ./stream.sh <char>
+## example: ./index B
 if [[ $# -ne 1 ]]; then
   letter='B'
 else
