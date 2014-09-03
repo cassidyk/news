@@ -1,6 +1,6 @@
 #!/bin/bash
 ## usage:   ./stream.sh <char>
-## example: ./index B
+## example: ./stream.sh B
 if [[ $# -ne 1 ]]; then
   letter='B'
 else
@@ -100,7 +100,6 @@ do
         done
       fi
     fi
-
     cd .
   fi
 done < $dir/files.sl
