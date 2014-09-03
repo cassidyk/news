@@ -7,8 +7,8 @@ else
   index=$1
 fi
 
-dir='/Users/cassidyk/wheel/hackernews'
-files="$dir/strings"
+base="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+files="$base/strings"
 
 ls -1 $files | grep -v files.sl > $files/files.sl
 count=$(cat $files/files.sl | wc -l | tr -d ' ')

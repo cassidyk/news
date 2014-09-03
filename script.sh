@@ -1,8 +1,8 @@
 #!/bin/bash
 
-dir='/Users/cassidyk/wheel/hackernews'
-string="$dir/strings"
-files="$dir/files"
+base="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+string="$base/strings"
+files="$base/files"
 
 rm -rf $string/*
 curl https://news.ycombinator.com/ > $files/`date +%s`.txt

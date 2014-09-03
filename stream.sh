@@ -13,7 +13,8 @@ chr() {
 }
 
 # start in $letter dir
-dir="/Users/cassidyk/wheel/hackernews/strings/$letter"
+base="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dir="$base/strings/$letter"
 cd $dir
 ls -1 $dir | grep -v files.sl | sort -g > files.sl
 

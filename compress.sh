@@ -14,3 +14,5 @@ chr() {
 
 #compress strings of \d*$ into A$ B$ C$ ...
 # 1$, 2$, 3$ => A$ and \A contains `(3 1$) # counts and start
+
+base="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
