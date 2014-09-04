@@ -15,7 +15,6 @@ string="$base/strings"
 files="$base/files"
 
 rm -rf $string/*
-curl https://news.ycombinator.com/ > $files/`date +%s`.txt
 
 # build 0 as root diff
 ls -1 $files | grep .txt > $files/files.sl

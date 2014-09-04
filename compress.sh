@@ -22,13 +22,16 @@ while read line
 do
   if [[ -d $dir/$line ]]; then
     cd $dir/$line
+      if [ ! -d "$dir/$line/0.0" ]; then
+        mkdir "$dir/$line/0.0"
+      fi
       cat $dir/$line/0 | wc -l | tr -d ' ' > 0.cw
 
       cw=`cat 0.cw`
       for index in `seq 1 $cw`
       do
         A1=`head -$index $dir/$line/0 | tail -1`
-        if [ "$index$" == $A1 ]; then # exif '700$' == "line from /0"$
+        if [ "$index$" == "$A1" ]; then # exif '700$' == "line from /0"$
           count=$(( $count + 1 ))     # exif => example if: "example" input assumed true.
                                       #            maps to: ln -s /dev/true
           if [[ $signal -eq 0 ]]; then
@@ -37,7 +40,7 @@ do
           signal=1
         else
           if [[ $signal -eq 1 ]]; then
-            cd $dir/$line
+            cd $dir/$line/0.0
             echo $start $count > "0.$start" # will echo "blank" line if $start && $count are unset
           fi
           count=0
@@ -46,5 +49,11 @@ do
       done
       #test if last line is $var
     cd .
+  fi
+  if [[ $signal -eq 1 ]]; then
+    cd $dir/$line/0.0
+    echo $start $count > "0.$start" # will echo "blank" line if $start && $count are unset
+    count=0
+    signal=0
   fi
 done < $dir/files.sl
