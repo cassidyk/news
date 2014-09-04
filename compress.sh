@@ -42,9 +42,11 @@ do
           if [[ $signal -eq 1 ]]; then
             cd $dir/$line/0.0
             echo $start $count > "0.$start" # will echo "blank" line if $start && $count are unset
+            echo "$start$" >> 0
           fi
           count=0
           signal=0
+          echo "$A1" >> 0
         fi
       done
       #test if last line is $var
