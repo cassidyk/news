@@ -1,0 +1,16 @@
+UPPERCASE.sh
+Users
+abstract.sh.sh
+block.sh
+compare.sh
+compress.sh
+files
+guano.sh
+index.sh
+number.sh
+run.sh
+script.sh
+sketch.sh
+stream.sh
+untitled
+version.sh

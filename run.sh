@@ -7,4 +7,3 @@
 ./UPPERCASE.sh
 ./012.sh
 ./lowercase.sh
-

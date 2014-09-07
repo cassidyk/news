@@ -9,7 +9,6 @@ base="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 home=$1
 eval $cd
 
-# build diff from root
 ls -1 | grep -v files.sl > files.sl
 root=`head -1 $home/files.sl`
 
@@ -52,4 +51,4 @@ base=$dir
 dir=''
 eval $cd
 
-./number.sh $base/0
+#./number.sh $home/0
