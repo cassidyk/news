@@ -52,7 +52,7 @@ do
   file=`head -$index $home/files.sl | tail -1`
   dir="0/$(eval $UPPER)"
   eval $cd
-    cat $home/$file > 0
+    cat $home/$file > a
   cd ..
 done
 
