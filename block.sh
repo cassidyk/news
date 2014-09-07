@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Given /dir
   # which contains
     # a list
@@ -6,7 +8,8 @@
 
 #assume $1 -eq "/absolute/path" || "~/relative/path"
 #assume $1 -eq nil -> ~
-home="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+base="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+home=$base
 
 if [[ -n "$1" ]]; then
   arg=$1
@@ -14,12 +17,13 @@ if [[ -n "$1" ]]; then
 
   if [[ $test == '~' ]]; then
     home=${arg/\~/$home}
-  fi
 
   #assume $1[0] -ne / -> ~/$1
     #$1[0] -> $1.0 -> $1/0
-  if [[ $test != '/' ]]; then
+  elif [[ $test != '/' ]]; then
     home=$home/$1
+  else
+    home=$arg
   fi
 fi
 
@@ -51,3 +55,11 @@ do
     cat $home/$file > 0
   cd ..
 done
+
+dir=$home
+home=$base
+base=$dir
+dir=''
+eval $cd
+
+./UPPERCASE.sh $base/0
