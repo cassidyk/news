@@ -41,6 +41,7 @@ do
 
       echo $root_i > a_root
       echo $leaf_i > b_leaf
+      cd ..
     fi
   done
 done
